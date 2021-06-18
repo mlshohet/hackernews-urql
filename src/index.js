@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
+
 import './index.css';
 import App from './containers/App';
 
@@ -14,8 +16,10 @@ const client = new Client({
 })
 
 ReactDOM.render(
-	<Provider value={client}>
-    	<App />
-    </Provider>,
+	<BrowserRouter>
+		<Provider value={client}>
+	    	<App />
+	    </Provider>
+    </BrowserRouter>,
   document.getElementById('root')
 );

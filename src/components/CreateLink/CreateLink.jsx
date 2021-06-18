@@ -8,7 +8,8 @@ const POST_MUTATION = gql`
 		post(description: $description, url: $url) {
 			id
 			createdAt
-			urldescription
+			url
+			description
 			postedBy {
 				id
 				name
@@ -22,16 +23,21 @@ const POST_MUTATION = gql`
 		}
 	}
 `
+console.log("gql:",POST_MUTATION)
 
 const CreateLink = props => {
+	console.log("props:",props)
 	const [description, setDescription] = React.useState('')
 	const [url, setUrl] = React.useState('')
 
 	const [state, executeMutation] = useMutation(POST_MUTATION)
 
 	const submit = React.useCallback(() => {
-		executeMutation({ url, description })
-	}, [executeMutation, url, description])
+		console.log(description, url, state);
+		executeMutation({ url, description }).then(() => {
+			props.history.push('/')
+		})
+	}, [executeMutation, url, description, state, props.history])
 
 	return (
 		<div>

@@ -1,12 +1,12 @@
-const postedBy = (parent, args, context) => {
-	return context.prisma.link.findUnique({ where: { id: parent.id } }).postedBy()
+function postedBy(parent, args, context) {
+  return context.prisma.link({ id: parent.id }).postedBy()
 }
 
-const votes = (parent, args, context) => {
-	return context.prisma.link.findUnique({ where: { id: parent.id } }).votes()
+function votes(parent, args, context) {
+  return context.prisma.link({ id: parent.id }).votes()
 }
 
 module.exports = {
-	postedBy,
-	votes,
+  postedBy,
+  votes,
 }
