@@ -5,18 +5,20 @@ import { getToken, deleteToken } from '../../utils/token'
 
 const Header = props => {
 
-	const token = localStorage.getItem('auth-token');
-	console.log("token from header: ", token);
-	const isLoggedIn = !!token;
+	const isLoggedIn = !!getToken();
 
 	return (
-		<div className="flex pa1 justify-between nowrap orange">
+		<div className="flex pa2 justify-between nowrap orange">
 			<div className="flex flex-fixed black">
 				<div className="fw7 mr1">
 					Hacker News
 				</div>
 				<Link to="/" className="ml1 no-underline black">
 					new
+				</Link>
+				<div className="ml1">|</div>
+				<Link to="/search" className="ml1 no-underline black">
+					search
 				</Link>
 				{isLoggedIn && (
 					<div className="flex">

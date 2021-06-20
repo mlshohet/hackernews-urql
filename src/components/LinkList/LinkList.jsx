@@ -13,6 +13,16 @@ const FEED_QUERY = gql`
 				createdAt
 				url
 				description
+				postedBy {
+					id
+					name
+				}
+				votes {
+					id
+					user {
+						id
+					}
+				}
 			}
 		}
 	}
@@ -23,8 +33,6 @@ const LinkList = () => {
 	const [result] = useQuery({ query: FEED_QUERY })
 	const { data, fetching, error } = result
 
-	console.log("result: ", result);
-
 	if (fetching) return <div>Fetching...</div>
 	if (error) return <div>Error!!!</div>
 
@@ -32,8 +40,8 @@ const LinkList = () => {
 
 	return (
 		<div>
-			{linksToRender.map(link => 
-				<Link key={link.id} link={link} />
+			{linksToRender.map((link, index) => 
+				<Link key={link.id} link={link} index={index} />
 			)}
 		</div>
 	)

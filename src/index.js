@@ -10,7 +10,11 @@ import App from './containers/App';
 import { Provider, Client, dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache'
 
-const cache = cacheExchange({})
+const cache = cacheExchange({
+	keys: {
+		Feed: () => null,
+	}
+})
 
 const client = new Client({
 	url: 'http://localhost:4000',

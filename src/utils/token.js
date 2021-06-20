@@ -1,9 +1,7 @@
 const AUTH_TOKEN = 'auth-token';
 
 export const getToken = () => {
-	console.log("Auth token: ",AUTH_TOKEN);
-	const token = localStorage.getItem(AUTH_TOKEN);
-	return token;
+	return localStorage.getItem(AUTH_TOKEN);
 }
 
 export const setToken = token => {
