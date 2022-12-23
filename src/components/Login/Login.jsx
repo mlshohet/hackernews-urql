@@ -22,7 +22,6 @@ const LOGIN_MUTATION = gql`
 `
 
 const Login = props => {
-	console.log(props);
 	const [isLogin, setIsLogin] = useState(true)
 
 	const [email, setEmail] = useState('')
@@ -37,7 +36,7 @@ const Login = props => {
 		console.log(email, password, name);
 		executeMutation({ email, password, name })
 			.then(({ data }) => {
-				const token = data && data[isLogin ? 'login' : 'signup'].token
+				const token = data && data[isLogin ? 'login' : 'signup']?.token
 				if (token) {
 					setToken(token)
 					props.history.push('/')
